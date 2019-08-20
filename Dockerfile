@@ -22,6 +22,23 @@ RUN apt-get update && \
 	
 # Install desired R packages (on top of the ones preloaded)
 RUN install.r data.table \
-		tinytest
+		tidyverse \
+		lattice \
+		shiny \
+		flexdashboard \
+		dygraphs \
+		doParallel \
+		foreach \
+		future \
+		future.apply \
+		rbenchmark \
+		microbenchmark \
+		memoise \
+		devtools \
+		tinytest \
+		RUnit \
+		testthat \
+		rcmdcheck \
+		lintr
 
 RUN useradd ag
