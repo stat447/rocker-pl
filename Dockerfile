@@ -8,13 +8,20 @@
 # base because it's more focused and solves the prerequisites
 # for us, along with providing many useful R packages. 
 
-FROM rocker/tidyverse
+FROM rocker/r-apt:bionic
 
 # From prairielearn/centos7-python
 # Needed to properly handle UTF-8
 ENV PYTHONIOENCODING=UTF-8
 
+# Install required libraries
+RUN apt-get update && \
+	apt-get install -y libcurl4-openssl-dev \
+		libssl-dev \
+		libxml2-dev
+	
 # Install desired R packages (on top of the ones preloaded)
-RUN R -e "install.packages(c('data.table', 'tinytest'))"
+RUN install.r data.table \
+		tinytest
 
 RUN useradd ag
