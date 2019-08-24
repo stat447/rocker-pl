@@ -34,9 +34,10 @@ RUN apt-get update && apt-get install -y \
       r-cran-testthat \
       r-cran-tidyverse \
       r-cran-tinytest \
-      r-cran-xts 
+      r-cran-xts \
+      sudo
 
 # Install desired R packages (on top of the ones preloaded) 
-RUN install.r bench flexdashboard lintr
+RUN install.r bench diffobj flexdashboard lintr
 
 RUN useradd ag
