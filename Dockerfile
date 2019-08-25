@@ -1,6 +1,7 @@
-# Image used for PrairieLearn external grading of R questions.
+# Image used for PrairieLearn external grading of R questions
+# as well as general support of STAT 430 Data Science Programming Methods
 
-# Alton Barbehenn, 2019
+# Alton Barbehenn and Dirk Eddelbuettel, 2019
 
 # Before we based our image on prairielearn/centos7-python, 
 # and that worked, but it was harder to maintian and a lot 
@@ -8,37 +9,35 @@
 # base because it's more focused and solves the prerequisites
 # for us, along with providing many useful R packages. 
 
-FROM rocker/r-apt:bionic
+FROM rocker/r-ubuntu:18.04
 
 # From prairielearn/centos7-python
 # Needed to properly handle UTF-8
 ENV PYTHONIOENCODING=UTF-8
 
-# Install required libraries
-RUN apt-get update && \
-	apt-get install -y libcurl4-openssl-dev \
-		libssl-dev \
-		libxml2-dev
-	
-# Install desired R packages (on top of the ones preloaded)
-RUN install.r data.table \
-		tidyverse \
-		lattice \
-		shiny \
-		flexdashboard \
-		dygraphs \
-		doParallel \
-		foreach \
-		future \
-		future.apply \
-		rbenchmark \
-		microbenchmark \
-		memoise \
-		devtools \
-		tinytest \
-		RUnit \
-		testthat \
-		rcmdcheck \
-		lintr
+# Install required libraries -- using prebuild binaries where available
+RUN apt-get update && apt-get install -y \
+      r-cran-data.table \
+      r-cran-devtools \
+      r-cran-doparallel \
+      r-cran-dygraphs \
+      r-cran-foreach \
+      r-cran-future.apply \
+      r-cran-igraph \
+      r-cran-memoise \
+      r-cran-microbenchmark \
+      r-cran-rcpparmadillo \
+      r-cran-rex \
+      r-cran-runit \
+      r-cran-shiny \
+      r-cran-stringdist \
+      r-cran-testthat \
+      r-cran-tidyverse \
+      r-cran-tinytest \
+      r-cran-xts \
+      sudo
+
+# Install desired R packages (on top of the ones preloaded) 
+RUN install.r bench diffobj flexdashboard lintr
 
 RUN useradd ag
