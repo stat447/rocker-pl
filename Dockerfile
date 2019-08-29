@@ -38,7 +38,7 @@ RUN apt-get update && apt-get install -y \
       sudo
 
 # Install desired R packages (on top of the ones preloaded) 
-RUN install.r bench diffobj flexdashboard lintr
+RUN install.r bench diffobj flexdashboard lintr unix
 
 # Install ttdo -- for now (?) from GH
 RUN installGithub.r eddelbuettel/ttdo
