@@ -22,6 +22,7 @@ RUN apt-get update && apt-get install -y \
       r-cran-doparallel \
       r-cran-dygraphs \
       r-cran-foreach \
+      r-cran-fs \
       r-cran-future.apply \
       r-cran-igraph \
       r-cran-memoise \
@@ -37,7 +38,7 @@ RUN apt-get update && apt-get install -y \
       r-cran-xts \
       sudo
 
-# Install desired R packages (on top of the ones preloaded) 
+# Install additional R packages from CRAN (on top of the ones pre-built as r-cran-*)
 RUN install.r bench diffobj flexdashboard lintr unix
 
 # Install ttdo -- for now (?) from GH
