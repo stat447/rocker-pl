@@ -41,7 +41,7 @@ RUN apt-get update && apt-get install -y \
 # Install additional R packages from CRAN (on top of the ones pre-built as r-cran-*)
 RUN install.r bench diffobj flexdashboard lintr unix
 
-# Install ttdo -- for now (?) from GH
-RUN installGithub.r eddelbuettel/ttdo
+# Install ttdo and plr -- for now (?) from GH
+RUN installGithub.r eddelbuettel/ttdo stat430dspm/plr
 
 RUN useradd ag
