@@ -52,7 +52,7 @@ RUN installGithub.r eddelbuettel/ttdo stat430dspm/plr
 RUN useradd ag \ 
 	&& mkdir /home/ag \
 	&& chown ag:ag /home/ag \
-	&& echo "user" > /home/ag/.gitconfig \
+	&& echo "[user]" > /home/ag/.gitconfig \
 	&& echo "	name = Autograding User" >> /home/ag/.gitconfig \
 	&& echo "	email = ag@nowhere" >> /home/ag/.gitconfig \
 	&& chown ag:ag /home/ag/.gitconfig
