@@ -17,26 +17,31 @@ ENV PYTHONIOENCODING=UTF-8
 
 # Install required libraries -- using prebuild binaries where available
 RUN apt-get update && apt-get install -y \
-      r-cran-data.table \
-      r-cran-devtools \
-      r-cran-doparallel \
-      r-cran-dygraphs \
-      r-cran-foreach \
-      r-cran-fs \
-      r-cran-future.apply \
-      r-cran-igraph \
-      r-cran-memoise \
-      r-cran-microbenchmark \
-      r-cran-rcpparmadillo \
-      r-cran-rex \
-      r-cran-runit \
-      r-cran-shiny \
-      r-cran-stringdist \
-      r-cran-testthat \
-      r-cran-tidyverse \
-      r-cran-tinytest \
-      r-cran-xts \
-      sudo
+	git \
+	r-cran-data.table \
+	r-cran-devtools \
+	r-cran-doparallel \
+	r-cran-dygraphs \
+	r-cran-foreach \
+	r-cran-fs \
+	r-cran-future.apply \
+	r-cran-gh \
+	r-cran-git2r \
+	r-cran-igraph \
+	r-cran-memoise \
+	r-cran-microbenchmark \
+	r-cran-rcpparmadillo \
+	r-cran-rex \
+	r-cran-runit \
+	r-cran-shiny \
+	r-cran-rsqlite \
+	r-cran-stringdist \
+	r-cran-testthat \
+	r-cran-tidyverse \
+	r-cran-tinytest \
+	r-cran-xts \
+	sqlite3 \
+	sudo
 
 # Install additional R packages from CRAN (on top of the ones pre-built as r-cran-*)
 RUN install.r bench diffobj flexdashboard lintr unix
@@ -44,4 +49,9 @@ RUN install.r bench diffobj flexdashboard lintr unix
 # Install ttdo and plr -- for now (?) from GH
 RUN installGithub.r eddelbuettel/ttdo stat430dspm/plr
 
-RUN useradd ag
+RUN useradd ag \ 
+	&& mkdir /home/ag \
+	&& chown ag:ag \
+	&& echo "user" > /home/ag/.gitconfig \
+	&& echo "	name = Autograding User" >> /home/ag/.gitconfig \
+	&& echo "	email = ag@nowhere" >> /home/ag/.gitconfig 
