@@ -32,9 +32,9 @@ RUN apt-get update && apt-get install -y \
 	r-cran-microbenchmark \
 	r-cran-rcpparmadillo \
 	r-cran-rex \
+	r-cran-rsqlite \
 	r-cran-runit \
 	r-cran-shiny \
-	r-cran-rsqlite \
 	r-cran-stringdist \
 	r-cran-testthat \
 	r-cran-tidyverse \
@@ -44,10 +44,10 @@ RUN apt-get update && apt-get install -y \
 	sudo
 
 # Install additional R packages from CRAN (on top of the ones pre-built as r-cran-*)
-RUN install.r bench diffobj flexdashboard lintr unix
+RUN install.r bench diffobj flexdashboard lintr ttdo unix
 
-# Install ttdo and plr -- for now (?) from GH
-RUN installGithub.r eddelbuettel/ttdo stat430dspm/plr
+# Install plr -- for now (?) from GH
+RUN installGithub.r stat430dspm/plr
 
 RUN useradd ag \ 
 	&& mkdir /home/ag \
