@@ -30,6 +30,7 @@ RUN apt-get update && apt-get install -y \
 	r-cran-igraph \
 	r-cran-memoise \
 	r-cran-microbenchmark \
+	r-cran-png \
 	r-cran-rcpparmadillo \
 	r-cran-rex \
 	r-cran-rsqlite \
@@ -46,8 +47,8 @@ RUN apt-get update && apt-get install -y \
 # Install additional R packages from CRAN (on top of the ones pre-built as r-cran-*)
 RUN install.r bench diffobj flexdashboard lintr ttdo unix
 
-# Install plr -- for now (?) from GH
-RUN installGithub.r stat430dspm/plr
+# Install plr -- for now (?) from GH; also install visualTest
+RUN installGithub.r stat430dspm/plr MangoTheCat/visualTest
 
 RUN useradd ag \ 
 	&& mkdir /home/ag \
