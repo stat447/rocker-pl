@@ -11,7 +11,6 @@
 
 FROM rocker/r-ubuntu:20.04
 
-# From prairielearn/centos7-python
 # Needed to properly handle UTF-8
 ENV PYTHONIOENCODING=UTF-8
 
@@ -43,7 +42,8 @@ RUN apt-get update && apt-get install -y \
 	r-cran-tinytest \
 	r-cran-xts \
 	sqlite3 \
-        sudo
+        sudo \
+        && echo "options(diffobj.brightness=\"dark\")" >> /etc/R/Rprofile.site
 
 # Install additional R packages from CRAN (on top of the ones pre-built as r-cran-*)
 RUN install.r bench flexdashboard microbenchmark lintr ttdo unix
