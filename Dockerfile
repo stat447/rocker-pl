@@ -49,7 +49,7 @@ RUN apt-get update && apt-get install -y \
 RUN install.r bench flexdashboard microbenchmark lintr ttdo unix
 
 # Install plr -- for now (?) from GH; also install visualTest
-RUN installGithub.r stat430dspm/plr MangoTheCat/visualTest
+RUN installGithub.r stat447/plr MangoTheCat/visualTest
 
 RUN useradd ag \ 
 	&& mkdir /home/ag \
